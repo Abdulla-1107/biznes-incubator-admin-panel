@@ -45,7 +45,7 @@ export function AppSidebar() {
           </div>
           {!collapsed && (
             <span className="font-bold text-sidebar-foreground text-lg truncate">
-              NafisArt
+              BiznesIncubator
             </span>
           )}
         </div>

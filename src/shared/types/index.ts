@@ -44,14 +44,21 @@ export interface Service {
   updatedAt: string;
 }
 
-export type ServiceCategory = "DESIGN" | "DEVELOPMENT" | "MARKETING" | "CONSULTING" | "OTHER";
+export type ServiceCategory =
+  | "BUSINESS_MODEL"
+  | "LAUNCH"
+  | "TECHNICAL"
+  | "MARKETING_SALES"
+  | "EDUCATION"
+  | "INVESTMENT";
 
 export const serviceCategoryLabels: Record<ServiceCategory, string> = {
-  DESIGN: "Dizayn",
-  DEVELOPMENT: "Dasturlash",
-  MARKETING: "Marketing",
-  CONSULTING: "Konsalting",
-  OTHER: "Boshqa",
+  BUSINESS_MODEL: "Biznes modeli",
+  LAUNCH: "Loyihani ishga tushirish",
+  TECHNICAL: "Texnik",
+  MARKETING_SALES: "Marketing & Savdo",
+  EDUCATION: "Ta’lim",
+  INVESTMENT: "Investitsiya",
 };
 
 export interface Partner {
@@ -65,7 +72,12 @@ export interface Partner {
   createdAt: string;
 }
 
-export type PartnerType = "STRATEGIC" | "TECHNOLOGY" | "MEDIA" | "INVESTOR" | "OTHER";
+export type PartnerType =
+  | "STRATEGIC"
+  | "TECHNOLOGY"
+  | "MEDIA"
+  | "INVESTOR"
+  | "OTHER";
 
 export const partnerTypeLabels: Record<PartnerType, string> = {
   STRATEGIC: "Strategik",
@@ -75,17 +87,39 @@ export const partnerTypeLabels: Record<PartnerType, string> = {
   OTHER: "Boshqa",
 };
 
+export type MentorSpecialization =
+  | "BUSINESS"
+  | "TECHNOLOGY"
+  | "MARKETING"
+  | "FINANCE"
+  | "LEGAL"
+  | "DESIGN"
+  | "HR"
+  | "OTHER";
+
 export interface Mentor {
   id: string;
   fullName: string;
   bio?: string;
-  specialization: string;
+  specialization: MentorSpecialization;
   experienceYears: number;
-  avatar?: string;
+  photoUrl?: string;
   isFeatured: boolean;
   isActive: boolean;
   createdAt: string;
 }
+
+export const mentorSpecializationLabels: Record<MentorSpecialization, string> =
+  {
+    BUSINESS: "Biznes",
+    TECHNOLOGY: "Texnologiya",
+    MARKETING: "Marketing",
+    FINANCE: "Moliya",
+    LEGAL: "Huquq",
+    DESIGN: "Dizayn",
+    HR: "HR",
+    OTHER: "Boshqa",
+  };
 
 export interface Startup {
   id: string;
@@ -131,7 +165,12 @@ export interface Event {
 }
 
 export type EventFormat = "ONLINE" | "OFFLINE" | "HYBRID";
-export type EventCategory = "WORKSHOP" | "SEMINAR" | "CONFERENCE" | "MEETUP" | "HACKATHON";
+export type EventCategory =
+  | "WORKSHOP"
+  | "SEMINAR"
+  | "CONFERENCE"
+  | "MEETUP"
+  | "HACKATHON";
 
 export const eventFormatLabels: Record<EventFormat, string> = {
   ONLINE: "Onlayn",

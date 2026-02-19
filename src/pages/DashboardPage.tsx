@@ -35,7 +35,7 @@ const DashboardPage = () => {
     <div className="space-y-6">
       <PageHeader
         title="Boshqaruv paneli"
-        description="NafisArt admin panelga xush kelibsiz"
+        description="BiznesIncubator admin panelga xush kelibsiz"
         icon={LayoutDashboard}
       />
 

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Upload, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFileUpload } from "@/shared/api/query-hooks";
@@ -12,13 +12,25 @@ interface FileUploadProps {
   className?: string;
 }
 
-export function FileUpload({ value, onChange, accept = "image/*", label = "Fayl yuklash", className }: FileUploadProps) {
+type UploadFile = {
+  url: string;
+  filename: string;
+  originalName: string;
+  size: number;
+};
+
+export function FileUpload({
+  value,
+  onChange,
+  accept = "image/*",
+  label = "Fayl yuklash",
+  className,
+}: FileUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadMutation = useFileUpload();
-
   const handleFile = async (file: File) => {
     const url = await uploadMutation.mutateAsync(file);
-    onChange(url);
+    onChange(url); // to'g'ridan-to'g'ri string URL
   };
 
   return (
@@ -29,6 +41,8 @@ export function FileUpload({ value, onChange, accept = "image/*", label = "Fayl 
         accept={accept}
         className="hidden"
         onChange={(e) => {
+          console.log(e, "e");
+
           const file = e.target.files?.[0];
           if (file) handleFile(file);
         }}
@@ -36,7 +50,11 @@ export function FileUpload({ value, onChange, accept = "image/*", label = "Fayl 
       {value ? (
         <div className="relative inline-block">
           {accept.startsWith("image") ? (
-            <img src={value} alt="Uploaded" className="h-20 w-20 rounded-lg object-cover border border-border" />
+            <img
+              src={value}
+              alt="Uploaded"
+              className="h-20 w-20 rounded-lg object-cover border border-border"
+            />
           ) : (
             <div className="h-20 px-4 rounded-lg border border-border flex items-center gap-2 text-sm text-muted-foreground">
               <Upload className="h-4 w-4" />
@@ -60,7 +78,11 @@ export function FileUpload({ value, onChange, accept = "image/*", label = "Fayl 
           onClick={() => inputRef.current?.click()}
           className="gap-2"
         >
-          {uploadMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+          {uploadMutation.isPending ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Upload className="h-4 w-4" />
+          )}
           {label}
         </Button>
       )}
