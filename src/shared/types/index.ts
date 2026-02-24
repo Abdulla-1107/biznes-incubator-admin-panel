@@ -120,50 +120,71 @@ export const mentorSpecializationLabels: Record<MentorSpecialization, string> =
     HR: "HR",
     OTHER: "Boshqa",
   };
+export type StartupStage = "IDEA" | "MVP" | "EARLY" | "GROWTH" | "SCALE";
 
-export interface Startup {
-  id: string;
-  name: string;
-  description?: string;
-  stage: StartupStage;
-  industry: string;
-  investment?: number;
-  foundedYear?: number;
-  logo?: string;
-  pitchDeck?: string;
-  isFeatured: boolean;
-  isActive: boolean;
-  createdAt: string;
-}
-
-export type StartupStage = "IDEA" | "MVP" | "GROWTH" | "SCALE" | "MATURE";
+export type StartupIndustry =
+  | "FINTECH"
+  | "EDTECH"
+  | "HEALTHTECH"
+  | "AGRITECH"
+  | "ECOMMERCE"
+  | "LOGISTICS"
+  | "AI_ML"
+  | "SAAS"
+  | "OTHER";
 
 export const startupStageLabels: Record<StartupStage, string> = {
   IDEA: "G'oya",
   MVP: "MVP",
+  EARLY: "Erta bosqich",
   GROWTH: "O'sish",
-  SCALE: "Masshtablash",
-  MATURE: "Yetuk",
+  SCALE: "Kengayish",
 };
 
-export interface Event {
-  id: string;
-  titleUz: string;
-  titleEn?: string;
-  titleRu?: string;
-  descriptionUz?: string;
-  date: string;
-  endDate?: string;
-  format: EventFormat;
-  category: EventCategory;
-  maxParticipants?: number;
-  isFree: boolean;
-  registrationDeadline?: string;
-  coverImage?: string;
-  isActive: boolean;
-  createdAt: string;
-}
+export const startupIndustryLabels: Record<StartupIndustry, string> = {
+  FINTECH: "Fintech",
+  EDTECH: "Edtech",
+  HEALTHTECH: "HealthTech",
+  AGRITECH: "AgriTech",
+  ECOMMERCE: "Ecommerce",
+  LOGISTICS: "Logistika",
+  AI_ML: "AI / ML",
+  SAAS: "SaaS",
+  OTHER: "Boshqa",
+};
 
+export interface Startup {
+  id: string;
+
+  stage?: StartupStage;
+  industry?: StartupIndustry;
+
+  nameUz: string;
+  nameEn: string;
+  nameRu: string;
+
+  descriptionUz: string;
+  descriptionEn: string;
+  descriptionRu: string;
+  
+  logoUrl?: string;
+  websiteUrl?: string;
+  pitchDeck?: string;
+
+  founderName?: string;
+  founderEmail?: string;
+
+  teamSize?: number;
+  foundedYear?: number;
+  investmentRaised?: number;
+
+  isActive: boolean;
+  isFeatured: boolean;
+  sortOrder: number;
+
+  createdAt: string;
+  updatedAt: string;
+}
 export type EventFormat = "ONLINE" | "OFFLINE" | "HYBRID";
 export type EventCategory =
   | "WORKSHOP"
